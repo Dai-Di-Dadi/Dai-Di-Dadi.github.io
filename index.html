@@ -5,43 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slot Booking</title>
     <script>
-        // Replace with your actual Google Apps Script Web App URL
-        const scriptURL = "https://script.google.com/macros/s/AKfycbxpivlp0ISPKge26QN-f0Zhc9OEhbxRugSyJXS5HqoDaLARKK91EVsst6C5agf2bbAf/exec";
-
-        // Function to load available slots from Google Sheets
-        function loadSlots() {
-            fetch(scriptURL, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log("Response:", data);
-                displaySlots(data.slots); // Assuming your script returns { slots: [...] }
-            })
-            .catch(error => console.error("Fetch Error:", error));
-        }
-
-        // Function to display slots in the HTML
-        function displaySlots(slots) {
-            const slotsList = document.getElementById("slots-list");
-            slotsList.innerHTML = ""; // Clear previous list
-            slots.forEach(slot => {
-                let li = document.createElement("li");
-                li.textContent = slot;
-                slotsList.appendChild(li);
-            });
-        }
-
-        // Load slots when page loads
-        loadSlots();
+        
     </script>
 </head>
 <body>
