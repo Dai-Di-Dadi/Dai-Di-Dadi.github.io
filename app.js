@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fetch available times from the backend
     async function fetchAvailableTimes() {
       try {
-        const response = await fetch('https://your-backend.onrender.com/api/available-times');
+        const response = await fetch('https://daididadi-backend.onrender.com/api/available-times');
         const timeslots = await response.json();
   
         // Clear existing options
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
       };
   
       try {
-        const response = await fetch('https://your-backend.onrender.com/api/book', {
+        const response = await fetch('https://daididadi-backend.onrender.com/api/book', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
