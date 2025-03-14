@@ -1,1 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slot Booking</title>
+    <script>
+        const scriptURL = "YOUR_GOOGLE_APPS_SCRIPT_URL"; // Replace with your Web App URL
 
+        async function loadSlots() {
+            const response = await fetch(scriptURL + "?action=getSlots");
+            const slots = await response.json();
+            const select = document.getElementById("slots");
+            select.innerHTML = "";
+            slots.forEach(slot => {
+                const option = document.createElement("option");
+                option.value = slot.id;
+                option.textContent = slot.datetime;
+                select.appendChild(option);
+            });
+        }
+
+        async function bookSlot() {
+            const slotId = document.getElementById("slots").value;
+            const response = await fetch(scriptURL, {
+                method: "POST",
+                body: JSON.stringify({ slotId }),
+                headers: { "Content-Type": "application/json" }
+            });
+            const result = await response.json();
+            alert(result.message);
+            loadSlots();
+        }
+
+        window.onload = loadSlots;
+    </script>
+</head>
+<body>
+    <h2>Book a Slot</h2>
+    <select id="slots"></select>
+    <button onclick="bookSlot()">Book</button>
+</body>
+</html>
